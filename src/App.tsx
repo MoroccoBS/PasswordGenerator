@@ -35,11 +35,10 @@ function App() {
       const randomIndex = Math.floor(Math.random() * characters.length);
       result += characters.charAt(randomIndex);
     }
-    console.log(result);
     const interval = setInterval(() => {
       const password = result
         .split("")
-        .map((letter, index) => {
+        .map((_letter, index) => {
           if (index < interactions) {
             return result[index];
           }
