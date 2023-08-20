@@ -1,0 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+}
+body {
+  height: 100vh;
+  background-color: #0d0c12;
+  color: white;
+  font-family: "IBM Plex Mono", "Courier New", Courier, monospace;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased; /* For Safari and Chrome */
+  -moz-osx-font-smoothing: grayscale; /* For Firefox on macOS */
+  font-smooth: always;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  outline: none;
+  opacity: 0.7;
+  border-radius: 50px;
+  transition: all 2s ease-in-out;
+  -webkit-transition: all 2s ease-in-out;
+  -moz-transition: all 2s ease-in-out;
+  -ms-transition: all 2s ease-in-out;
+  -o-transition: all 2s ease-in-out;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #a4ffaf;
+  cursor: pointer;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  -webkit-transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  -moz-transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  -ms-transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  -o-transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+.slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  background: #a4ffaf;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  scale: 1.1;
+  background-color: #0d0c12;
+  border: #a4ffaf solid 2px;
+  transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  -webkit-transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  -moz-transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  -ms-transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  -o-transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+.slider::-webkit-slider-thumb:active {
+  scale: 1.1;
+  background-color: #0d0c12;
+  border: #a4ffaf solid 2px;
+  transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  -webkit-transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  -moz-transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  -ms-transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  -o-transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+.slider::-webkit-slider-thumb:focus {
+  scale: 1.1;
+  background-color: #0d0c12;
+  border: #a4ffaf solid 2px;
+  transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  -webkit-transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  -moz-transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  -ms-transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  -o-transition: scale 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+
+:root {
+  --size: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-corner {
+  display: none;
+}
+
+.container {
+  cursor: pointer;
+  width: max-content;
+  & svg {
+    width: 1em;
+  }
+}
+
+.container input {
+  display: none;
+}
+
+.container svg {
+  overflow: visible;
+}
+
+.path {
+  fill: none;
+  stroke: #a4ffaf;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+  stroke-dasharray: 241 9999999;
+  stroke-dashoffset: 0;
+  -webkit-transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+  -moz-transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+  -ms-transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+  -o-transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+}
+
+.container input:checked ~ svg .path {
+  stroke-dasharray: 70.5096664428711 9999999;
+  stroke-dashoffset: -262.2723388671875;
+}
