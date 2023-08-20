@@ -1,6 +1,7 @@
 import "../App.css";
 import ButtonComponent from "./ButtonComponent";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { FiCircle } from "react-icons/fi";
 import CheckBox from "./CheckBox";
 import { Slider, ConfigProvider } from "antd";
 
@@ -14,6 +15,7 @@ interface OptionsProps {
   includeUpperCase: boolean;
   includeLowerCase: boolean;
   updateState?: (stateName: string, value: boolean) => void;
+  disabled: boolean;
 }
 
 function Options({
@@ -26,14 +28,8 @@ function Options({
   includeUpperCase,
   includeLowerCase,
   updateState,
+  disabled,
 }: OptionsProps) {
-  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const newLength = parseInt(event.target.value);
-  //   if (setLength) {
-  //     setLength(newLength);
-  //   }
-  // };
-
   const onChange = (newValue: number) => {
     setLength(newValue);
   };
@@ -75,7 +71,7 @@ function Options({
           }}
         >
           <Slider
-            defaultValue={15}
+            defaultValue={8}
             max={20}
             min={8}
             step={0.1}
@@ -130,6 +126,7 @@ function Options({
         </div>
         {children}
         <ButtonComponent
+          disabled={disabled}
           onClick={handleClick}
           ClassName="
           group
@@ -152,13 +149,19 @@ function Options({
           transition-all
           duration-300
           ease-in-out
+          disabled:opacity-50
+          disabled:pointer-events-none
         "
         >
           Generate
-          <AiOutlineArrowRight
-            size={20}
-            className="mt-1 group-hover:fill-white transition-all duration-100 "
-          />
+          {disabled ? (
+            <FiCircle size={20} className="mt-1 animate-spin" />
+          ) : (
+            <AiOutlineArrowRight
+              size={20}
+              className="mt-1 group-hover:fill-white transition-all duration-100 "
+            />
+          )}
         </ButtonComponent>
       </div>
     </>

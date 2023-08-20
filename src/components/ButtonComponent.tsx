@@ -3,16 +3,18 @@ interface ButtonComponentProps {
   onClick?: () => void;
   ClassName?: string;
   onMouseDown?: () => void;
+  disabled?: boolean;
 }
 
 function ButtonComponent({
   children,
   onClick,
   ClassName,
+  disabled,
 }: ButtonComponentProps) {
   return (
     <>
-      <button className={ClassName} onClick={onClick}>
+      <button disabled={disabled} className={ClassName} onClick={onClick}>
         {children}
       </button>
     </>
