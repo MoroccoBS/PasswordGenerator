@@ -1,5 +1,5 @@
 import Auth from "../Auth";
-import LoadingImage from "../assets/images/Loading.png";
+import LoadingImage from "../assets/images/Loading.webp";
 
 function SignIn() {
   return (
