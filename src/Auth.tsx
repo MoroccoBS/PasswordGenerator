@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { supabase } from "./supabaseClient";
 import { motion, AnimatePresence } from "framer-motion";
-import { AiOutlineCheck } from "react-icons/ai";
+import { AiOutlineCheck, AiFillGithub } from "react-icons/ai";
 import { VscError } from "react-icons/vsc";
 import PopUp from "./components/PopUp";
 import { FiCircle } from "react-icons/fi";
@@ -42,6 +42,16 @@ function Auth() {
       }, 1000);
     }, 3000);
     setLoading(false);
+  };
+  const handleGitHubLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "github",
+    });
+    if (error) {
+      console.error("GitHub login error:", error);
+    }
   };
 
   return (
@@ -92,10 +102,7 @@ function Auth() {
             <span className="text-Primary text-2xl"> SingIn without it!</span>
           </h2>
           <p className="mt-10">Enter your email:</p>
-          <form
-            className="mt-3 w-full flex flex-col gap-5 justify-center items-center"
-            onSubmit={handleLogin}
-          >
+          <form className="mt-3 w-full flex flex-col gap-5 justify-center items-center">
             <input
               className={` font-semibold text-lg w-full py-4 px-6 focus:outline-none bg-Bar focus:outline-Primary transition-all ease ${
                 typeError ? "outline outline-red-600" : ""
@@ -129,6 +136,8 @@ function Auth() {
           disabled:pointer-events-none
           `}
               disabled={loading}
+              type="submit"
+              onClick={handleLogin}
             >
               {loading ? (
                 <>
@@ -137,6 +146,46 @@ function Auth() {
                 </>
               ) : (
                 <span>Send magic link</span>
+              )}
+            </button>
+            <button
+              type="submit"
+              onClick={handleGitHubLogin}
+              className={`group
+          w-full
+          py-4
+          flex
+          justify-center
+          items-center
+          gap-3
+          text-lg
+          bg-Primary
+          font-semibold
+          hover:rotate-1
+          hover:scale-[1.01]
+          hover:shadow-2xl
+         bg-transparent
+         border-Primary
+         border-2
+         text-white
+          transition-all
+          duration-300
+          ease-in-out
+          disabled:opacity-50
+          disabled:pointer-events-none
+          `}
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  Loading...
+                  <FiCircle size={20} className="mt-1 animate-spin" />{" "}
+                </>
+              ) : (
+                <>
+                  <AiFillGithub size={35} />
+                  GitHub
+                </>
               )}
             </button>
             <p className="self-center m-auto font-medium">
