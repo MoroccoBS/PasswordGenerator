@@ -9,7 +9,7 @@ function SignIn() {
         <div className="w-full h-full absolute bg-black/20 z-10"></div>
         <img
           src={LoadingImage}
-          className="object-contain w-1/2 h-full lg:relative absolute"
+          className="object-contain w-1/2 h-full lg:inline hidden"
           alt=""
         />
       </div>
