@@ -15,7 +15,7 @@ function CheckBox({ included, handleInput, name, id, span }: CheckBoxProps) {
             type="checkbox"
             id={id}
             checked={included}
-            onInput={handleInput}
+            onChange={handleInput}
           />
           <svg viewBox="0 0 64 64" height="2em" width="2em">
             <path

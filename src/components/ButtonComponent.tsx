@@ -2,8 +2,11 @@ interface ButtonComponentProps {
   children?: React.ReactNode;
   onClick?: () => void;
   ClassName?: string;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
   onMouseDown?: () => void;
   disabled?: boolean;
+  type?: "button" | "submit" | "reset" | undefined;
 }
 
 function ButtonComponent({
@@ -11,10 +14,22 @@ function ButtonComponent({
   onClick,
   ClassName,
   disabled,
+  type,
+  onMouseEnter,
+  onMouseLeave,
+  onMouseDown,
 }: ButtonComponentProps) {
   return (
     <>
-      <button disabled={disabled} className={ClassName} onClick={onClick}>
+      <button
+        disabled={disabled}
+        className={ClassName}
+        onClick={onClick}
+        type={type}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        onMouseDown={onMouseDown}
+      >
         {children}
       </button>
     </>

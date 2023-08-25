@@ -8,6 +8,7 @@ export default {
         Secondary: "#0f0e14",
         Bar: "#18171f",
         Bg: "#24232b",
+        loading: "#171f28",
       },
     },
   },

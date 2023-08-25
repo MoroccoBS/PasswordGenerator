@@ -1,6 +1,7 @@
 import "../App.css";
 import ButtonComponent from "./ButtonComponent";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { BsFillSaveFill } from "react-icons/bs";
 import { FiCircle } from "react-icons/fi";
 import CheckBox from "./CheckBox";
 import { Slider, ConfigProvider } from "antd";
@@ -16,6 +17,7 @@ interface OptionsProps {
   includeLowerCase: boolean;
   updateState?: (stateName: string, value: boolean) => void;
   disabled: boolean;
+  insertData: () => void;
 }
 
 function Options({
@@ -29,6 +31,7 @@ function Options({
   includeLowerCase,
   updateState,
   disabled,
+  insertData,
 }: OptionsProps) {
   const onChange = (newValue: number) => {
     setLength(newValue);
@@ -71,6 +74,7 @@ function Options({
           }}
         >
           <Slider
+            disabled={disabled}
             defaultValue={8}
             max={20}
             min={8}
@@ -125,10 +129,11 @@ function Options({
           />
         </div>
         {children}
-        <ButtonComponent
-          disabled={disabled}
-          onClick={handleClick}
-          ClassName="
+        <div className="flex gap-5">
+          <ButtonComponent
+            disabled={disabled}
+            onClick={handleClick}
+            ClassName="
           group
           w-full
           py-4
@@ -152,17 +157,56 @@ function Options({
           disabled:opacity-50
           disabled:pointer-events-none
         "
-        >
-          Generate
-          {disabled ? (
-            <FiCircle size={20} className="mt-1 animate-spin" />
-          ) : (
-            <AiOutlineArrowRight
-              size={20}
-              className="mt-1 group-hover:fill-white transition-all duration-100 "
-            />
-          )}
-        </ButtonComponent>
+          >
+            Generate
+            {disabled ? (
+              <FiCircle size={20} className="mt-1 animate-spin" />
+            ) : (
+              <AiOutlineArrowRight
+                size={20}
+                className="mt-1 group-hover:fill-white transition-all duration-100 "
+              />
+            )}
+          </ButtonComponent>
+          <ButtonComponent
+            disabled={disabled}
+            onClick={insertData}
+            ClassName="
+          group
+          w-full
+          py-4
+          flex
+          justify-center
+          items-center
+          gap-3
+          text-2xl
+          bg-Primary
+          font-semibold
+          bg-transparent
+          border-Primary
+          border-2
+          text-white
+          transition-all
+          duration-300
+          ease-in-out
+          disabled:opacity-50
+          disabled:pointer-events-none
+          hover:rotate-3
+          hover:scale-105
+          hover:shadow-2xl
+        "
+          >
+            Save
+            {disabled ? (
+              <FiCircle size={20} className="mt-1 animate-spin" />
+            ) : (
+              <BsFillSaveFill
+                size={20}
+                className="mt-1 group-hover:fill-white transition-all duration-100 "
+              />
+            )}
+          </ButtonComponent>
+        </div>
       </div>
     </>
   );
