@@ -30,10 +30,12 @@ function App({ session, showSidebar }: AppProps) {
 
   function generateRandomString(length: number) {
     if (
-      includeNumbers === false &&
-      includeSymbols === false &&
-      includeUpperCase === false &&
-      includeLowerCase === false
+      !(
+        includeNumbers ||
+        includeSymbols ||
+        includeUpperCase ||
+        includeLowerCase
+      )
     ) {
       setError(true);
       setTimeout(() => {
@@ -159,24 +161,15 @@ function App({ session, showSidebar }: AppProps) {
           />
         )}
 
-        {copied && (
-          <PopUp
-            errorType={{ error: true, text: "Text copied to clipboard" }}
-          />
-        )}
+        {copied && <PopUp errorText="Text copied to clipboard" />}
 
         {error && (
           <PopUp
-            errorType={{
-              error: error,
-              text: "Select at least one type of characters",
-            }}
+            errorText="Select at least one type of characters"
             error="error"
           />
         )}
-        {success && (
-          <PopUp errorType={{ error: error, text: "Password saved" }} />
-        )}
+        {success && <PopUp errorText="Password saved" />}
       </AnimatePresence>
       <motion.div
         animate={{
@@ -192,7 +185,7 @@ function App({ session, showSidebar }: AppProps) {
         className="w-full h-full"
       >
         <div
-          className={`lg:w-[35rem] w-4/5 h-full flex flex-col items-center gap-5 m-auto pt-10 pb-7 ${
+          className={`lg:w-[35rem] w-11/12 h-full flex flex-col items-center gap-5 m-auto pt-10 pb-7 ${
             showSidebar && !isMobile ? "w-full" : ""
           }`}
         >

@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import { AiOutlineCheck } from "react-icons/ai";
-import { VscError } from "react-icons/vsc";
+import { BiSolidErrorCircle } from "react-icons/bi";
 interface Props {
-  errorType: { error: boolean; text: string };
+  errorText: string;
   error?: string;
 }
 
-function PopUp({ errorType, error }: Props) {
+function PopUp({ errorText, error }: Props) {
   return (
     <>
       <motion.div
@@ -20,11 +20,15 @@ function PopUp({ errorType, error }: Props) {
           damping: 10,
           mass: 0.5,
         }}
-        className="text-center z-50 items-center p-5 absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-Bar rounded-xl shadow-2xl flex gap-4"
+        className="w-10/12 sm:w-max text-center z-50 items-center p-5 absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-Bar rounded-xl shadow-2xl flex gap-4"
       >
-        <h1 className="text-lg">{errorType.text}</h1>
+        <h1 className="text-lg">{errorText}</h1>
         {error === "error" ? (
-          <VscError size={25} fill="red" />
+          <BiSolidErrorCircle
+            size={25}
+            fill="red"
+            className="md:scale-100 scale-125"
+          />
         ) : (
           <AiOutlineCheck size={25} fill="#a4ffaf" />
         )}

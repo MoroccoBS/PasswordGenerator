@@ -20,7 +20,7 @@ function Loading() {
     "Loading... Our web developers are battling the final boss of bugs.",
   ];
   useEffect(() => {
-    const animation = animate(count, 100, { duration: 5 });
+    const animation = animate(count, 100, { duration: 4 });
 
     return animation.stop;
   }, []);
@@ -29,7 +29,8 @@ function Loading() {
     <>
       <motion.div
         exit={{ opacity: 0 }}
-        className="z-[99999] bg-Secondary bg-no-repeat bg-center bg-cover w-full h-full absolute flex items-center flex-col gap-10 justify-center px-[5rem]"
+        transition={{ duration: 0.5, type: "spring", ease: "easeInOut" }}
+        className="z-[99999] bg-Secondary bg-no-repeat bg-center bg-cover w-full h-full absolute flex items-center flex-col gap-10 justify-center px-2 md:px-[5rem]"
       >
         <motion.h1
           initial={{ opacity: 0, y: -40 }}
@@ -39,11 +40,11 @@ function Loading() {
           }}
           exit={{ y: -40 }}
           transition={{ duration: 0.5 }}
-          className="text-5xl font-bold text-center break-words w-5/6 leading-tight"
+          className="md:text-5xl text-3xl font-bold text-center break-words w-5/6 leading-tight"
         >
           {loadingMessages[Math.floor(Math.random() * loadingMessages.length)]}
         </motion.h1>
-        <div className="flex items-center">
+        <div className="flex items-center md:text-6xl text-3xl">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{
@@ -52,7 +53,7 @@ function Loading() {
             }}
             exit={{ y: 40 }}
             transition={{ duration: 0.5 }}
-            className="text-6xl font-bold text-Primary"
+            className=" font-bold text-Primary"
           >
             {rounded}
           </motion.h1>
@@ -64,7 +65,7 @@ function Loading() {
             }}
             exit={{ y: 40 }}
             transition={{ duration: 0.5 }}
-            className="text-6xl font-bold text-Primary"
+            className=" font-bold text-Primary"
           >
             %
           </motion.span>

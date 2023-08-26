@@ -26,7 +26,7 @@ function Strength({ strength }: StrengthProps) {
   const style = checkStrength() || [];
   return (
     <>
-      <div className="w-full h-16 p-5 bg-Bar flex justify-between items-center text-xl">
+      <div className="w-full h-16 p-5 bg-Bar flex justify-between items-center md:text-xl text-base">
         <h1>Strength</h1>
         <div className="flex h-full gap-[6px] items-center">
           <h1 className="mr-1">{style[1]}</h1>

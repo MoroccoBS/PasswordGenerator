@@ -121,10 +121,7 @@ function SaveModal({
       <AnimatePresence>
         {popupError && (
           <PopUp
-            errorType={{
-              error: error,
-              text: "This Name is already exist, please choose another one",
-            }}
+            errorText="This Name is already exist, please choose another one"
             error="error"
           />
         )}
@@ -150,7 +147,7 @@ function SaveModal({
             <VscError
               size={35}
               fill="red"
-              className="absolute -right-5 -top-1/3 hover:scale-105 hover:rotate-6 hover:shadow-lg transition-all ease-in-out"
+              className="absolute -right-7 -top-1/2 hover:scale-105 hover:rotate-6 hover:shadow-lg transition-all ease-in-out"
             />
           </button>
         </div>

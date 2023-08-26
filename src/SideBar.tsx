@@ -50,20 +50,24 @@ function SideBar({ setClose, session }: Props) {
   const [filteredItems, setFilteredItems] = useState([]);
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const filtered = items.filter((item: any) =>
-      item.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setFilteredItems(filtered);
+    setFilteredItems(() => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return items.filter((item: any) =>
+        item.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    });
   }, [items, searchQuery]);
 
-  function handleSearchChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setSearchQuery(event.target.value);
-  }
+  const handleSearchChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchQuery(event.target.value);
+    },
+    []
+  );
 
   const [loadingDelete, setLoadingDelete] = useState(false);
 
-  const deleteItem = async (id: string) => {
+  const deleteItem = useCallback(async (id: string) => {
     setLoadingDelete(true);
     const { error } = await supabase
       .from("passwords")
@@ -78,21 +82,21 @@ function SideBar({ setClose, session }: Props) {
       fetchItems();
       setTimeout(() => {
         setLoadingDelete(false);
-      }, 2000);
+      });
     }
-  };
+  }, []);
+
+  const handleClose = useCallback(() => {
+    setClose();
+  }, [setClose]);
 
   return (
     <motion.div
-      initial={{ x: "100%", opacity: 0 }}
-      animate={{ x: "0", opacity: 1 }}
-      exit={{ x: "100%", opacity: 0 }}
-      transition={{
-        duration: 0.35,
-        type: "tween",
-        ease: "easeInOut",
-      }}
-      className="lg:w-3/6 w-full h-full bg-Bar shadow-2xl px-5 overflow-y-scroll z-10 absolute right-0"
+      initial={{ x: "100%" }}
+      animate={{ x: "0" }}
+      exit={{ x: "100%" }}
+      transition={{ duration: 0.3, type: "tween" }}
+      className="lg:w-3/6 w-full h-screen bg-Bar shadow-2xl px-5 overflow-y-scroll z-10 absolute right-0"
     >
       <div className="w-full py-7 flex items-center gap-5 border-b-2 border-Primary/70">
         <img
@@ -104,7 +108,7 @@ function SideBar({ setClose, session }: Props) {
           <h1 className="text-2xl font-bold text-Primary">Welcome</h1>
           <p className="text-sm">{userName}</p>
         </div>
-        <button onClick={setClose}>
+        <button onClick={handleClose}>
           <VscError
             size={35}
             fill="red"

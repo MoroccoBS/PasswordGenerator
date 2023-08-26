@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { supabase } from "./supabaseClient";
-import { motion, AnimatePresence } from "framer-motion";
-import { AiOutlineCheck, AiFillGithub } from "react-icons/ai";
-import { VscError } from "react-icons/vsc";
+import { AnimatePresence } from "framer-motion";
+import { AiFillGithub } from "react-icons/ai";
 import PopUp from "./components/PopUp";
 import { FiCircle } from "react-icons/fi";
 
@@ -59,39 +58,21 @@ function Auth() {
       <AnimatePresence>
         {state.state && (
           <>
-            <motion.div
-              initial={{ opacity: 0, y: -10, x: "-50%" }}
-              animate={{ opacity: 1, y: 50, x: "-50%" }}
-              exit={{ opacity: 0, y: -10, x: "-50%" }}
-              transition={{
-                duration: 0.2,
-                type: "spring",
-                stiffness: 200,
-                damping: 10,
-                mass: 0.5,
-              }}
-              className="text-center z-50 items-center p-5 absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-Bar rounded-xl shadow-2xl flex gap-4"
-            >
-              <h1 className="text-lg">{state?.error}</h1>
-              {state?.error ===
-              "The Perfect time to check your email inbox!" ? (
-                <AiOutlineCheck size={25} fill="#a4ffaf" />
-              ) : (
-                <VscError size={25} fill="red" />
-              )}
-            </motion.div>
+            {state?.error === "The Perfect time to check your email inbox!" ? (
+              <PopUp errorText={state?.error} />
+            ) : (
+              <PopUp errorText={state?.error} error="error" />
+            )}
           </>
         )}
         {easterEgg && (
           <PopUp
-            errorType={{
-              error: true,
-              text: "What Part of Impossible you didn't get?",
-            }}
+            errorText="What Part of Impossible you didn't get?"
+            error="error"
           />
         )}
       </AnimatePresence>
-      <div className="shadow-2xl lg:ml-20 ml-0 z-40 flex-col md:w-1/2 w-4/5 h-max py-10 px-10 bg-Bg flex gap-5 rounded-xl">
+      <div className="shadow-2xl lg:ml-20 ml-0 z-40 flex-col lg:w-1/2 sm:w-4/5 w-11/12 sm:h-max h-5/6 py-10 sm:px-10 px-5 bg-Bg flex gap-5 rounded-xl">
         <h1 className="self-center text-5xl font-semibold mt-3 ml-5">
           SignIn<span className="text-Primary">.</span>
         </h1>
@@ -188,7 +169,7 @@ function Auth() {
                 </>
               )}
             </button>
-            <p className="self-center m-auto font-medium">
+            <p className="self-center m-auto font-medium text-center">
               Generate without login?{" "}
               <button
                 type="button"

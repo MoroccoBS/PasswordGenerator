@@ -28,8 +28,9 @@ function Saved({ filteredItems, deleteItem, loadingDelete }: SavedProps) {
             name={item.name}
             password={decryptPassword(item.password)}
             website={item.website}
-            deleteItem={() => deleteItem(item.id)}
+            deleteItem={deleteItem}
             loadingDelete={loadingDelete}
+            item={item}
           />
         ))}
       </motion.div>

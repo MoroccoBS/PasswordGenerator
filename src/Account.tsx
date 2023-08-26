@@ -13,7 +13,7 @@ const Account = ({ session }: Props) => {
   const [profileData, setProfileData] = useState({
     username: "",
     email: "",
-    fullname: "",
+    full_name: "",
   });
   const [sadFace, setSadFace] = useState(false);
   const [moreSadeFace, setMoreSadFace] = useState(false);
@@ -34,7 +34,7 @@ const Account = ({ session }: Props) => {
       setProfileData({
         username: data.username,
         email: data.email,
-        fullname: data.fullname,
+        full_name: data.full_name,
       });
     }
     setTimeout(() => {
@@ -53,8 +53,8 @@ const Account = ({ session }: Props) => {
     const updates = {
       id: user.id,
       username: profileData.username,
-      email: profileData.email,
-      fullname: profileData.fullname,
+      email: session.user.email,
+      full_name: profileData.full_name,
       updated_at: new Date(),
     };
 
@@ -72,7 +72,7 @@ const Account = ({ session }: Props) => {
   return (
     <>
       <form
-        className="w-full h-max p-10 flex flex-col gap-10"
+        className="w-full h-max md:p-10 px-2 py-5 flex flex-col gap-10"
         onSubmit={(e) => e.preventDefault()}
       >
         <Input
@@ -95,9 +95,9 @@ const Account = ({ session }: Props) => {
         <Input
           id="fullname"
           label="FullName:"
-          value={memorizedProfileData.fullname || ""}
+          value={memorizedProfileData.full_name || ""}
           onChange={(e) =>
-            setProfileData({ ...profileData, fullname: e.target.value })
+            setProfileData({ ...profileData, full_name: e.target.value })
           }
           required={true}
           type="text"
@@ -113,7 +113,8 @@ const Account = ({ session }: Props) => {
             justify-center
             items-center
             gap-3
-            text-2xl
+            md:text-2xl
+            text-lg
             bg-Primary
             text-Bar
             border-Primary
@@ -151,7 +152,8 @@ const Account = ({ session }: Props) => {
             justify-center
             items-center
             gap-3
-            text-2xl
+            md:text-2xl
+            text-lg
             bg-Primary
             font-semibold
             bg-transparent

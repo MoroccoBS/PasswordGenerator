@@ -60,7 +60,7 @@ function MainApp() {
     });
     setTimeout(() => {
       setLoading(false);
-    }, 5000);
+    }, 4000);
   }, []);
 
   return (
@@ -80,15 +80,13 @@ function MainApp() {
             )}
           </AnimatePresence>
           <button
-            className="absolute top-10 right-10 z-0 hover:scale-125 hover:rotate-6 hover:shadow-lg transition-all ease-in-out"
+            className="absolute sm:top-10 sm:right-10 top-5 right-5 z-0 hover:scale-125 hover:rotate-6 hover:shadow-lg transition-all ease-in-out"
             onClick={() => setShowSidebar(!showSidebar)}
           >
             <AiOutlineMenu size={35} />
           </button>
-          {/* <SideBar ></SideBar> */}
         </div>
       )}
-      {/* {session ? <Account key={session.user.id} session={session} /> : null} */}
     </>
   );
 }

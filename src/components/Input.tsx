@@ -18,8 +18,8 @@ function Input({
   required,
 }: InputProps) {
   return (
-    <div className="flex gap-5 justify-center items-center">
-      <label className="w-1/6" htmlFor={id}>
+    <div className="flex gap-7 justify-center items-center ">
+      <label className="w-1/6 sm:text-base text-sm" htmlFor={id}>
         {label}
       </label>
       <input

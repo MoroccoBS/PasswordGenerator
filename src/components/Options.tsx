@@ -141,7 +141,8 @@ function Options({
           justify-center
           items-center
           gap-3
-          text-2xl
+          md:text-2xl
+          text-lg
           bg-Primary
           text-Bar
           border-Primary
@@ -179,7 +180,8 @@ function Options({
           justify-center
           items-center
           gap-3
-          text-2xl
+          md:text-2xl
+          text-lg
           bg-Primary
           font-semibold
           bg-transparent
