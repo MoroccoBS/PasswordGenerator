@@ -49,11 +49,13 @@ function SaveModal({
 
     if (!userId) {
       console.error("Invalid user ID");
+      setInsertCooldown(false);
       return;
     }
 
     if (data.name === "") {
       setError(true);
+      setInsertCooldown(false);
       setTimeout(() => {
         setError(false);
       }, 1000);
@@ -147,7 +149,7 @@ function SaveModal({
             <VscError
               size={35}
               fill="red"
-              className="absolute -right-7 -top-1/2 hover:scale-105 hover:rotate-6 hover:shadow-lg transition-all ease-in-out"
+              className="absolute -right-5 -top-1/4 hover:scale-105 hover:rotate-6 hover:shadow-lg transition-all ease-in-out"
             />
           </button>
         </div>

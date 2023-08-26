@@ -10,7 +10,7 @@ interface DisplayProps {
 function Display({ PassWord, onCopy, disabled }: DisplayProps) {
   return (
     <>
-      <div className="w-full px-7 py-5 flex justify-between bg-Bg">
+      <div className="w-full sm:px-7 px-4 py-5 flex justify-between bg-Bg">
         <h1
           className={`text-2xl ${
             PassWord === "" ? "text-zinc-600" : ""

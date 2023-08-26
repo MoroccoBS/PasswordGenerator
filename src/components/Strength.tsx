@@ -5,7 +5,7 @@ interface StrengthProps {
 function Strength({ strength }: StrengthProps) {
   const checkStrength = () => {
     if (strength === 5) {
-      return [`bg-green-400`, "Very Strong"];
+      return [`bg-green-400`, "VeryStrong"];
     }
     if (strength === 4) {
       return [`bg-green-400`, "Strong"];
@@ -17,7 +17,7 @@ function Strength({ strength }: StrengthProps) {
       return [`bg-yellow-400`, "Weak"];
     }
     if (strength === 1) {
-      return [`bg-red-400`, "Very Weak"];
+      return [`bg-red-400`, "VeryWeak"];
     }
     if (strength <= 0) {
       return [`bg-red-400`, "Unusable"];
@@ -29,7 +29,7 @@ function Strength({ strength }: StrengthProps) {
       <div className="w-full h-16 p-5 bg-Bar flex justify-between items-center md:text-xl text-base">
         <h1>Strength</h1>
         <div className="flex h-full gap-[6px] items-center">
-          <h1 className="mr-1">{style[1]}</h1>
+          <h1 className="sm:mr-1 mr-0 sm:text-xl text-sm">{style[1]}</h1>
           {strength === 1 ? (
             <>
               <div className={`w-2 h-[100%] border-[1px] ${style[0]}`}></div>

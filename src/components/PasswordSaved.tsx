@@ -136,14 +136,14 @@ function PasswordSaved({
             }}
             className="ml-2 flex flex-col gap-5"
           >
-            <div className="text-white font-lg flex items-center gap-4">
-              <p className="text-zinc-400">Website:</p>{" "}
+            <div className=" text-white font-lg flex items-center gap-4">
+              <p className="text-zinc-400">Website:</p>
               <span className="font-bold text-xl">{website}</span>
             </div>
             <div className="text-white font-lg flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <p className="text-zinc-400">PassWord:</p>
-                <span className="font-bold text-xl">
+                <span className="font-bold text-xl break-all">
                   {showPassword ? password : getLength()}
                 </span>
               </div>
