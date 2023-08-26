@@ -29,7 +29,7 @@ function Loading() {
     <>
       <motion.div
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.5, type: "spring", ease: "easeInOut" }}
+        transition={{ duration: 0.5, type: "spring" }}
         className="z-[99999] bg-Secondary bg-no-repeat bg-center bg-cover w-full h-full absolute flex items-center flex-col gap-10 justify-center px-2 md:px-[5rem]"
       >
         <motion.h1
