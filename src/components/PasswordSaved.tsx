@@ -4,6 +4,7 @@ import { IoIosArrowDropupCircle } from "react-icons/io";
 import { IoTrashBin } from "react-icons/io5";
 import { AnimatePresence, motion } from "framer-motion";
 import { VscError } from "react-icons/vsc";
+import { useMediaQuery } from "@mantine/hooks";
 interface PasswordSavedProps {
   name: string;
   password: string;
@@ -25,6 +26,7 @@ function PasswordSaved({
   const [showPassword, setShowPassword] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState(false);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const getLength = () => {
     const { length } = password;
@@ -39,7 +41,7 @@ function PasswordSaved({
       <AnimatePresence>
         {deleteConfirm && (
           <motion.div
-            className="h-full w-full absolute left-0 top-0 z-50 p-10 bg-Secondary flex flex-col gap-5 text-xl shadow-2xl overflow-scroll"
+            className="h-full w-full absolute left-0 top-0 z-50 p-5 bg-Secondary flex flex-col gap-2 text-xl shadow-2xl overflow-scroll"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.5 }}
@@ -52,32 +54,35 @@ function PasswordSaved({
             }}
           >
             <div className="relative w-full ">
-              <h1 className="md:text-2xl sm:text-lg text-base font-bold text-center">
+              <h1 className="md:text-2xl sm:text-xl text-base font-bold text-center">
                 Are you sure you want to delete this Item{" "}
               </h1>
               <button onClick={() => setDeleteConfirm(false)}>
                 <VscError
                   size={35}
                   fill="red"
-                  className="absolute -right-7 -top-1/2 hover:scale-105 hover:rotate-6 hover:shadow-lg transition-all ease-in-out"
+                  className="absolute -right-5 -top-1/4 hover:scale-105 hover:rotate-6 hover:shadow-lg transition-all ease-in-out"
                 />
               </button>
             </div>
-            <div className="flex w-3/4 gap-10 m-auto h-max -translate-y-1/4 ">
+            <div className="flex w-3/4 gap-10 m-auto h-max ">
               <button
                 className=" w-1/2 hover:rotate-3 flex gap-5 text-white justify-center items-center bg-red-500 p-3 rounded-sm
                   hover:scale-105 hover:shadow-2xl cursor-pointer  m-auto transition-all duration-200 ease-in-out"
                 onClick={() => deleteItem(item.id)}
               >
-                <IoTrashBin onClick={deleteItem} size={35}></IoTrashBin>
-                <h1 className="md:text-xl text-base">Delete?</h1>
+                {!isMobile && (
+                  <IoTrashBin onClick={deleteItem} size={35}></IoTrashBin>
+                )}
+
+                <h1 className="md:text-lg text-base">Delete?</h1>
               </button>
               <button
-                className="md:text-xl text-base w-1/2 hover:rotate-3 flex gap-5 text-white justify-center items-center border border-red-500 p-3 rounded-sm
+                className=" w-1/2 hover:rotate-3 flex gap-5 text-white justify-center items-center border border-red-500 p-3 rounded-sm
                   hover:scale-105 hover:shadow-2xl cursor-pointer   m-auto transition-all duration-200 ease-in-out"
                 onClick={() => setDeleteConfirm(false)}
               >
-                Cancel
+                <h1 className="md:text-lg text-base">Cancel</h1>
               </button>
             </div>
           </motion.div>
