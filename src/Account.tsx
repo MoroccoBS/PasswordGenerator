@@ -6,9 +6,12 @@ import ButtonComponent from "./components/ButtonComponent";
 import { FiCircle } from "react-icons/fi";
 type Props = {
   session: Session;
+  setProfileUpdated: React.Dispatch<
+    React.SetStateAction<{ isUpdated: boolean; error: string }>
+  >;
 };
 
-const Account = ({ session }: Props) => {
+const Account = ({ session, setProfileUpdated }: Props) => {
   const [loading, setLoading] = useState(true);
   const [profileData, setProfileData] = useState({
     username: "",
@@ -61,9 +64,39 @@ const Account = ({ session }: Props) => {
     const { error } = await supabase.from("profiles").upsert(updates);
 
     if (error) {
-      alert(error.message);
+      setProfileUpdated({
+        isUpdated: true,
+        error: error.message,
+      });
+      setTimeout(() => {
+        setProfileUpdated({
+          isUpdated: false,
+          error: error.message,
+        });
+        setTimeout(() => {
+          setProfileUpdated({
+            isUpdated: false,
+            error: "",
+          });
+        }, 1000);
+      }, 1000);
     } else {
-      alert("Profile updated");
+      setProfileUpdated({
+        isUpdated: true,
+        error: "Profile Updated",
+      });
+      setTimeout(() => {
+        setProfileUpdated({
+          isUpdated: false,
+          error: "Profile Updated",
+        });
+        setTimeout(() => {
+          setProfileUpdated({
+            isUpdated: false,
+            error: "",
+          });
+        }, 1000);
+      }, 1000);
     }
     setLoading(false);
   }

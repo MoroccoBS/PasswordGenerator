@@ -12,9 +12,12 @@ import Account from "./Account";
 interface Props {
   session: Session;
   setClose: () => void;
+  setProfileUpdated: React.Dispatch<
+    React.SetStateAction<{ isUpdated: boolean; error: string }>
+  >;
 }
 
-function SideBar({ setClose, session }: Props) {
+function SideBar({ setClose, session, setProfileUpdated }: Props) {
   const [section, setSection] = useState<"Saved" | "Account">("Saved");
   const [userName, setUserName] = useState("");
 
@@ -176,7 +179,7 @@ function SideBar({ setClose, session }: Props) {
           />
         </>
       ) : section === "Account" ? (
-        <Account session={session} />
+        <Account setProfileUpdated={setProfileUpdated} session={session} />
       ) : null}
       {/* {section === "Account" && <Account />} */}
       {/* <div className="w-full h-full bg-slate-700 p-10">
